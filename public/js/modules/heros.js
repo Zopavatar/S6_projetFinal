@@ -1,8 +1,10 @@
 import {Perso} from './persos.js';
 
 class Guerrier extends Perso {
-    constructor(nom,vie,attaque){
+    constructor(nom,vie,poste,attaque,mode){
         super(nom,vie,attaque);
+        this.mode = mode;
+        this.poste = poste;
         this.rage = 0;
     }
 
@@ -19,8 +21,10 @@ class Guerrier extends Perso {
 
 
 class Archer extends Perso {
-    constructor(nom,vie,attaque){
+    constructor(nom,vie,poste,attaque,mode){
         super(nom,vie,attaque);
+        this.mode = mode;
+        this.poste = poste;
         this.fleches = 0;
     }
 
@@ -29,7 +33,7 @@ class Archer extends Perso {
         this.fleche += 1;
 
         while (this.fleche <= 0) {
-            heroArray.splice(heroArray.indexOf(this));
+            herosArray.splice(herosArray.indexOf(this));
             this.fleches += 6;
         }
     }
@@ -40,8 +44,10 @@ export let flechesArray = [7,8,9,10,11];
 
 
 class Mage extends Perso {
-    constructor(nom,vie,attaque){
+    constructor(nom,vie,poste,attaque,mode){
         super(nom,vie,attaque);
+        this.mode = mode;
+        this.poste = poste;
         this.mana = 0;
     }
 
@@ -49,7 +55,7 @@ class Mage extends Perso {
         this.mana -= 2;
 
         while (this.mana <= 0){
-            heroArray.splice(heroArray.indexOf(this));
+            herosArray.splice(herosArray.indexOf(this));
             this.mana += 7;
         }
     }
@@ -60,9 +66,9 @@ export let manaArray = [7,9,11];
 
 
 
-export let guerrier = new Guerrier ("string","number","number");
-export let mage = new Mage ("string","number","number");
-export let archer = new Archer ("string","number","number");
+export let guerrier = new Guerrier ("string","number","guerrier","number","string");
+export let mage = new Mage ("string","number","mage","number","string");
+export let archer = new Archer ("string","number","archer","number","string");
 
 
 export let herosArray = [guerrier,mage,archer];

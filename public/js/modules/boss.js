@@ -1,6 +1,7 @@
 import {Perso} from './persos.js';
 
-export class Boss extends Perso {
+
+class Boss extends Perso {
     constructor(nom,vie,attaque){
         super(nom,vie,attaque);
     }
@@ -32,6 +33,9 @@ export class Boss extends Perso {
 }
 
 
-export let sauron = new Boss ("Sauron",300,20);
-export let chronos = new Boss ("Chronos",600,40);
-export let lilith = new Boss ("Lilith",250,18);
+let sauron = new Boss ("Sauron",300,20);
+let chronos = new Boss ("Chronos",600,40);
+let lilith = new Boss ("Lilith",250,18);
+
+
+export let bossArray = [sauron,chronos,lilith];

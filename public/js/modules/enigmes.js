@@ -6,5 +6,8 @@ export class Enigmes {
         this.enigmeRep = enigmeRep;
     }
 
-
+    enigmeQuestion(){
+        let rand = Math.floor(Math.random()*enigmeArray.length);
+        let ask = prompt(enigmeArray[rand].enigmeIntitu);
+    }
 }

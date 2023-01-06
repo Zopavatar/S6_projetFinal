@@ -1,8 +1,8 @@
-export class Boss {
+import {Perso} from './persos.js';
+
+export class Boss extends Perso {
     constructor(nom,vie,attaque){
-        this.nom = nom;
-        this.vie = vie;
-        this.attaque = attaque;
+        super(nom,vie,attaque);
     }
 
     Duel(perso, elEnigme){
@@ -32,7 +32,6 @@ export class Boss {
 }
 
 
-export let sauron = new Boss ("Sauron",10,20);
+export let sauron = new Boss ("Sauron",300,20);
 export let chronos = new Boss ("Chronos",600,40);
 export let lilith = new Boss ("Lilith",250,18);
-

@@ -1,3 +1,7 @@
+//import perso généraux
+
+import {Perso} from './modules/persos.js'
+
 // imports boss
 
 import {Boss} from './modules/boss.js';

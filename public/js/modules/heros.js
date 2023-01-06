@@ -25,7 +25,13 @@ class Archer extends Perso {
     }
 
     competence(){
-        
+        this.fleches -= 2;
+        this.fleche += 1;
+
+        while (this.fleche <= 0) {
+            heroArray.splice(heroArray.indexOf(this));
+            this.fleches += 6;
+        }
     }
 }
 
@@ -38,6 +44,15 @@ class Mage extends Perso {
         super(nom,vie,attaque);
         this.mana = 0;
     }
+
+    competence(){
+        this.mana -= 2;
+
+        while (this.mana <= 0){
+            heroArray.splice(heroArray.indexOf(this));
+            this.mana += 7;
+        }
+    }
 }
 
 export let manaArray = [7,9,11];
@@ -45,10 +60,10 @@ export let manaArray = [7,9,11];
 
 
 
-let guerrier = new Guerrier (who,vida,war);
-let mage = new Mage (who,vida,war);
-let archer = new Archer (who,vida,war);
+export let guerrier = new Guerrier ("string","number","number");
+export let mage = new Mage ("string","number","number");
+export let archer = new Archer ("string","number","number");
 
 
-export let heroArray = [guerrier,mage,archer];
+export let herosArray = [guerrier,mage,archer];
 

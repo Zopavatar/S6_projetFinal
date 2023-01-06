@@ -9,4 +9,6 @@ import {chronos} from './modules/boss.js';
 
 // import enigmes
 
-import { Enigmes } from './modules/enigmes.js';
+import {Enigmes} from './modules/enigmes.js';
+
+import {enigmeArray} from './modules/enigmes.js';

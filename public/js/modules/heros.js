@@ -1,10 +1,16 @@
 import {Perso} from './persos.js';
 
-class Guerrier extends Perso {
+class Hero extends Perso {
     constructor(nom,vie,poste,attaque,mode){
         super(nom,vie,attaque);
         this.mode = mode;
         this.poste = poste;
+    }
+}
+
+class Guerrier extends Hero {
+    constructor(nom,vie,poste,attaque,mode){
+        super(nom,vie,poste,attaque,mode);
         this.rage = 0;
     }
 
@@ -20,11 +26,9 @@ class Guerrier extends Perso {
 
 
 
-class Archer extends Perso {
+class Archer extends Hero {
     constructor(nom,vie,poste,attaque,mode){
-        super(nom,vie,attaque);
-        this.mode = mode;
-        this.poste = poste;
+        super(nom,vie,poste,attaque,mode);
         this.fleches = 0;
     }
 
@@ -43,11 +47,9 @@ export let flechesArray = [7,8,9,10,11];
 
 
 
-class Mage extends Perso {
+class Mage extends Hero {
     constructor(nom,vie,poste,attaque,mode){
-        super(nom,vie,attaque);
-        this.mode = mode;
-        this.poste = poste;
+        super(nom,vie,poste,attaque,mode);
         this.mana = 0;
     }
 

@@ -127,6 +127,40 @@ if (ptAttaque !== 0) {
 
 
 alert (`Récapitulatif de votre équipe: votre ${guerrier.poste},${guerrier.nom} possède ${guerrier.vie} points de vie et ${guerrier.attaque} point d'attaque / votre ${mage.poste},${mage.nom} possède ${mage.vie} points de vie et ${mage.attaque} point d'attaque. Ce personnage possède ${mage.mana} points de mana / votre ${archer.poste},${archer.nom} possède ${archer.vie} points de vie et ${archer.attaque} point d'attaque. Ce personnage possède ${archer.fleches} flèches dans son carquois`);
+alert(`Vous allez maintenant pouvoir choisir le mode de combat de vos héros`);
+
+
+
+herosArray.forEach(element => {
+    element.mode = prompt(`Sur quel mode voulez-vous mettre votre ${element.nom}: defense ou attaque ?`);
+    
+    switch(true){
+        case element.mode == "attaque":
+            element.attaque *= 1.4;
+            element.vie *= 0.75;
+
+            alert(`votre ${element.poste} est en mode ${element.mode}. Il possède un quart de ses point de vie en moins (${element.vie}),mais ses points d'attaque augmentent de deux cinquième (${element.attaque})`);
+            break;
+
+        case element.mode == "defense":
+            element.attaque *= 0.5;
+            element.vie *= 2.5;
+
+            herosArray.push(element);
+
+            alert(`votre ${element.poste} est en mode ${element.mode}. Il possède seulement la moitié de ses points d'attaque (${element.vie}), mais ses points de vie augment de 2 fois et demi (${element.vie}) `);
+            break;
+
+        case element.mode == "normal":
+            alert(`votre ${element.poste} est en mode ${element.mode}.`);
+            break;
+
+        default:
+            alert(`Ceci ne fonctionne pas, veuillez introduire un mode`);
+            element.mode = prompt(`Sur quel mode voulez-vous mettre votre ${element.nom}: defense ou attaque ?`);
+    }
+
+});
 
 
 
@@ -139,33 +173,37 @@ do {
 
     i++;
 
-    alert(`C'est le ${i} tour ! choisissez le mode de vos héros`);
+    alert(`C'est parti pour le tour numéro ${i} !`);
 
     herosArray.forEach(element => {
-        element.mode = prompt(`Sur quel mode voulez-vous mettre votre ${element.nom}: defense ou attaque ?`);
-        
-        switch(true){
-            case element.mode == "attaque":
-                element.competence();
+      alert(`${element.nom}, le ${element.poste}, attaque le boss ${elBoss.nom}`);
 
-                alert(`votre ${element} est en mode ${element.mode}`);
-                break;
+      element.competence();
+      elBoss.vie -= element.attaque;
 
-            case element.mode == "defense":
-                console.log("defense");
-                alert(`votre ${element} est en mode ${element.mode}`);
-                break;
-
-            default:
-                alert(`Ceci ne fonctionne pas, veuillez introduire un mode`);
-                element.mode = prompt(`Sur quel mode voulez-vous mettre votre ${element.nom}: defense ou attaque ?`);
-        } 
-
-
-
+      alert(`${elBoss} a été touché, ses points de vie ne sont plus que de ${elBoss.vie}. Votre ${element.poste}, ${element.nom}, a fait mouche.`);
     });
 
 
-    
+    let heroPif = Math.floor(Math.random()*herosArray.length);
 
-} while (elBoss.vie > 0 || guerrier.vie && archer.vie && mage.vie > 0);
+    herosArray[heroPif].vie -= elBoss.attaque;
+    alert(`Votre ${herosArray[heroPif].poste} a été touché par ${elBoss.nom}!`)
+
+
+    if(herosArray[heroPif].vie <= 0){
+        herosArray.splice(herosArray[heroPif],1);
+        alert(`Votre ${herosArray[heroPif].poste} est mort !`);
+    }
+
+    alert (`Récapitulatif de votre équipe: votre ${guerrier.poste},${guerrier.nom} possède ${guerrier.vie} points de vie et ${guerrier.attaque} point d'attaque / votre ${mage.poste},${mage.nom} possède ${mage.vie} points de vie et ${mage.attaque} point d'attaque. Ce personnage possède ${mage.mana} points de mana / votre ${archer.poste},${archer.nom} possède ${archer.vie} points de vie et ${archer.attaque} point d'attaque. Ce personnage possède ${archer.fleches} flèches dans son carquois`);
+
+} while (elBoss.vie > 0 || guerrier.vie <= 0 && archer.vie <= 0 && mage.vie <= 0);
+
+
+switch (true) {
+    case elBoss.vie <= 0:
+        alert(`Vous avez gagné la bataille, ${elBoss.nom} est mort !`);
+    case guerrier.vie <= 0  && archer.vie <= 0 && mage.vie <= 0:
+        alert(`Vous avez perdu la bataille, tous vos héros sont morts !`);
+}

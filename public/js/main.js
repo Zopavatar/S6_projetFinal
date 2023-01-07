@@ -46,14 +46,14 @@ herosArray.forEach(element =>
 
 
 
-let ptVie = 1000;
+let ptVie = 600;
 
 console.log(`Vous avez nommé vos personnages ${guerrier.nom}, ${mage.nom} et ${archer.nom}. Vous allez maintenant pouvoir leur distribuer ${ptVie} points de vie`);
 
 herosArray.forEach(element => {
 
      do {
-        element.vie = prompt(`Combien de point de vie voulez-vous donner à ${element.nom}, votre ${element.poste} ? Il vous en reste ${ptVie}/1000`);
+        element.vie = 200; //prompt(`Combien de point de vie voulez-vous donner à ${element.nom}, votre ${element.poste} ? Il vous en reste ${ptVie}/800`);
 
         if (element.vie > ptVie) {
             console.log("Vous n'avez pas suffisamment de points");
@@ -97,14 +97,14 @@ if (ptVie !== 0) {
 }
 
 
-let ptAttaque = 800;
+let ptAttaque = 90;
 
 console.log(`Vous allez maintenant pouvoir leur distribuer ${ptAttaque} points d'attaque`);
 
 herosArray.forEach(element => {
 
     do {
-        element.attaque = prompt(`Combien de point d'attaque voulez-vous donner à ${element.nom}, votre ${element.poste} ? Il vous en reste ${ptAttaque}/800`);
+        element.attaque = 30; //prompt(`Combien de point d'attaque voulez-vous donner à ${element.nom}, votre ${element.poste} ? Il vous en reste ${ptAttaque}/800`);
 
         if (element.attaque > ptAttaque) {
             console.log("Vous n'avez pas suffisamment de points");
@@ -143,14 +143,10 @@ if (ptAttaque !== 0) {
 
     console.log(`C'est bon, il vous reste ${ptAttaque} point de vie à distribuer`);
 } else {
-    console.log(`Vos points d'attaque sont distribués, vous allez pouvoir débuter la partie`);
+    console.log(`Tous vos points d'attaque sont distribuésL`);
 }
 
-
-console.log(`Récapitulatif de votre équipe: votre ${guerrier.poste},${guerrier.nom} possède ${guerrier.vie} points de vie et ${guerrier.attaque} point d'attaque / votre ${mage.poste},${mage.nom} possède ${mage.vie} points de vie et ${mage.attaque} point d'attaque. Ce personnage possède ${mage.mana} points de mana / votre ${archer.poste},${archer.nom} possède ${archer.vie} points de vie et ${archer.attaque} point d'attaque. Ce personnage possède ${archer.fleches} flèches dans son carquois`);
 console.log(`Vous allez maintenant pouvoir choisir le mode de combat de vos héros`);
-
-
 
 herosArray.forEach(element => {
     element.mode = "attaque"; //prompt(`Sur quel mode voulez-vous mettre votre ${element.nom}: defense ou attaque ?`);
@@ -184,51 +180,9 @@ herosArray.forEach(element => {
 });
 
 
+console.log(`Récapitulatif de votre équipe: votre ${guerrier.poste},${guerrier.nom} possède ${guerrier.vie} points de vie et ${guerrier.attaque} point d'attaque / votre ${mage.poste},${mage.nom} possède ${mage.vie} points de vie et ${mage.attaque} point d'attaque. Ce personnage possède ${mage.mana} points de mana / votre ${archer.poste},${archer.nom} possède ${archer.vie} points de vie et ${archer.attaque} point d'attaque. Ce personnage possède ${archer.fleches} flèches dans son carquois`);
+console.log("Vous allez pouvoir débuter la partie !");
 
 
 //partie
 
-let i = 0;
-
-do {
-
-    i++;
-
-    console.log(`C'est parti pour le tour numéro ${i} !`);
-
-    herosArray.forEach(element => {
-      console.log(`${element.nom}, le ${element.poste}, attaque le boss ${elBoss.nom}`);
-
-      element.competence();
-
-      elBoss.vie -= element.attaque;
-
-      console.log(`${elBoss} a été touché, ses points de vie ne sont plus que de ${elBoss.vie}. Votre ${element.poste}, ${element.nom}, a fait mouche.`);
-    });
-
-
-    let heroPif = Math.floor(Math.random()*herosArray.length);
-
-    herosArray[heroPif].vie -= elBoss.attaque;
-    console.log(`Votre ${herosArray[heroPif].poste} a été touché par ${elBoss.nom}!`)
-
-
-    if(herosArray[heroPif].vie <= 0){
-        herosArray.splice(herosArray[heroPif],1);
-        console.log(`Votre ${herosArray[heroPif].poste} est mort !`);
-    }
-
-    console.log(`Récapitulatif de votre équipe: votre ${guerrier.poste},${guerrier.nom} possède ${guerrier.vie} points de vie et ${guerrier.attaque} point d'attaque / votre ${mage.poste},${mage.nom} possède ${mage.vie} points de vie et ${mage.attaque} point d'attaque. Ce personnage possède ${mage.mana} points de mana / votre ${archer.poste},${archer.nom} possède ${archer.vie} points de vie et ${archer.attaque} point d'attaque. Ce personnage possède ${archer.fleches} flèches dans son carquois`);
-
-} while (elBoss.vie > 0 || guerrier.vie <= 0 && archer.vie <= 0 && mage.vie <= 0);
-
-
-switch (true) {
-    case elBoss.vie <= 0:
-        console.log(`Vous avez gagné la bataille, ${elBoss.nom} est mort !`);
-        break;
-
-    case guerrier.vie <= 0  && archer.vie <= 0 && mage.vie <= 0:
-        console.log(`Vous avez perdu la bataille, tous vos héros sont morts !`);
-        break;
-}

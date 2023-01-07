@@ -186,3 +186,31 @@ console.log("Vous allez pouvoir débuter la partie !");
 
 //partie
 
+let i = 0;
+
+do {
+    i++;
+
+    console.log(`C'est parti pour le tour ${i}`);
+
+
+    herosArray.forEach (element =>{
+
+        elBoss.vie -= element.attaque;
+
+        console.log(`Votre ${element.poste}, ${element.nom}, attaque le boss ${elBoss.nom}`);
+
+        console.log(`Votre ${element.poste} a fait mouche! Il ne reste plus que ${elBoss.vie} points de vie au boss.`);
+    });
+
+
+
+    let random = Math.floor(Math.random()*herosArray.length);
+
+    console.log(herosArray[random]);
+    herosArray[random].vie -= elBoss.attaque;
+    console.log(herosArray[random]);
+
+
+    herosArray.forEach (element => element.competence());
+} while (elBoss.vie >= 0 || herosArray.length == 0);

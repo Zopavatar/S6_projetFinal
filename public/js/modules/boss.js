@@ -14,9 +14,9 @@ class Boss extends Perso {
 }
 
 
-let sauron = new Boss ("Sauron",500,20);
-let chronos = new Boss ("Chronos",800,40);
-let lilith = new Boss ("Lilith",450,18);
+let sauron = new Boss ("Sauron",700,20);
+let chronos = new Boss ("Chronos",1200,40);
+let lilith = new Boss ("Lilith",850,18);
 
 
 export let bossArray = [sauron,chronos,lilith];

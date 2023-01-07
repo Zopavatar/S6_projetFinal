@@ -196,7 +196,6 @@ do {
 
     console.log(`C'est parti pour le tour ${i}`);
 
-
     herosArray.forEach (element =>{
 
         if (element.vie > 0) {
@@ -213,6 +212,8 @@ do {
         } else {
             console.log(`ce héros est mort`);
         }
+
+        element.competence()
     });
 
 
@@ -222,8 +223,6 @@ do {
         herosArray[random].vie -= elBoss.attaque;
         console.log(`votre ${herosArray[random].poste}, ${herosArray[random].nom}, a été touché par le boss. Il ne lui reste plus que ${herosArray[random].vie} points de vie`);
     }
-
-    herosArray.forEach (element => element.competence());
 
     console.log(`La rage de votre ${guerrier.poste} est à ${guerrier.rage} points. Votre ${archer.poste} possède ${archer.fleches}. Votre ${mage.poste} possède ${mage.mana}`)
 } while (elBoss.vie >= 0 || herosArray.length == 0);

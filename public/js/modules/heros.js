@@ -39,6 +39,18 @@ class Archer extends Hero {
     }
 
     competence(){
+        let flechesPerte = this.fleches - 2;
+        this.fleches = flechesPerte + 1;
+
+
+        if(this.fleches <= 0) {
+            this.fleches += 6;
+
+            console.log(`Votre ${this.poste} n'a plus de flèches. Il va en rechercher 6 et passe son prochain tour.`);
+        }
+        else {
+            console.log(`L'attaque de votre ${this.poste} lui a coûté 2 flèches. Mais il a pu en récupérer une. Il en possède donc ${this.fleches}`);
+        }
 
     }
 }

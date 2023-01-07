@@ -15,10 +15,16 @@ class Guerrier extends Hero {
     }
 
     competence(){
-        this.rage++;
+        this.rage += 1;
 
-        if (this.rage == 4) {
-            this.attaque = this.attaque*1.25;
+        console.log(this.attaque);
+
+        if(this.rage == 4){
+            this.attaque *=1.25;
+        }
+
+        if(this.rage == 5){
+            this.attaque /=1.25;
             this.rage = 0;
         }
     }
@@ -33,13 +39,7 @@ class Archer extends Hero {
     }
 
     competence(){
-        this.fleches -= 2;
-        this.fleche += 1;
 
-        while (this.fleche <= 0) {
-            herosArray.splice(herosArray.indexOf(this));
-            this.fleches += 6;
-        }
     }
 }
 
@@ -54,12 +54,7 @@ class Mage extends Hero {
     }
 
     competence(){
-        this.mana -= 2;
-
-        while (this.mana <= 0){
-            herosArray.splice(herosArray.indexOf(this));
-            this.mana += 7;
-        }
+        
     }
 }
 

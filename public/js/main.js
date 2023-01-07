@@ -36,6 +36,9 @@ let elBoss = bossArray[bossAleat];
 archer.fleches = flechesArray[flechesAleat];
 mage.mana = manaArray[manaAleat];
 
+
+
+
 console.log(`Bienvenue dans cette nouvelles partie de Geek of Legends ! Votre équipe est constituée de 3 héros, un guerrier / un mage / un archer, qui vont se battre courageusement contre le boss ${elBoss.nom}. Continuez pour nommer les membres de votre équipe`);
 
 herosArray.forEach(element =>
@@ -196,21 +199,31 @@ do {
 
     herosArray.forEach (element =>{
 
-        elBoss.vie -= element.attaque;
+        if (element.vie > 0) {
+            elBoss.vie -= element.attaque;
 
-        console.log(`Votre ${element.poste}, ${element.nom}, attaque le boss ${elBoss.nom}`);
+            if (elBoss.vie > 0){
+                console.log(`Votre ${element.poste}, ${element.nom}, attaque le boss ${elBoss.nom}`);
 
-        console.log(`Votre ${element.poste} a fait mouche! Il ne reste plus que ${elBoss.vie} points de vie au boss.`);
+                console.log(`Votre ${element.poste} a fait mouche! Il ne reste plus que ${elBoss.vie} points de vie au boss.`);
+            } else {
+                console.log(`Votre ${element.poste} a fait mouche! Il ne reste plus de points de vie au boss.`);
+
+            }
+        } else {
+            console.log(`ce héros est mort`);
+        }
     });
-
 
 
     let random = Math.floor(Math.random()*herosArray.length);
 
-    console.log(herosArray[random]);
-    herosArray[random].vie -= elBoss.attaque;
-    console.log(herosArray[random]);
-
+    if (elBoss.vie > 0 && herosArray[random].vie > 0){
+        herosArray[random].vie -= elBoss.attaque;
+        console.log(`votre ${herosArray[random].poste}, ${herosArray[random].nom}, a été touché par le boss. Il ne lui reste plus que ${herosArray[random].vie} points de vie`);
+    }
 
     herosArray.forEach (element => element.competence());
+
+    console.log(`La rage de votre ${guerrier.poste} est à ${guerrier.rage} points. Votre ${archer.poste} possède ${archer.fleches}. Votre ${mage.poste} possède ${mage.mana}`)
 } while (elBoss.vie >= 0 || herosArray.length == 0);

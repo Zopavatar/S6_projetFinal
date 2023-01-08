@@ -17,7 +17,7 @@ class Guerrier extends Hero {
     competence(){
         this.rage += 1;
 
-        console.log(this.attaque);
+        console.log(`Votre ${this.poste} a ${this.rage} points de rage. Ses points d'attaque sont augmenté de 25% pendant un tour. Il possède donc ${this.attaque} points d'attaque jusqu'au prochain tour.`);
 
         if(this.rage == 4){
             this.attaque *=1.25;
@@ -47,8 +47,10 @@ class Archer extends Hero {
             this.fleches += 6;
 
             console.log(`Votre ${this.poste} n'a plus de flèches. Il va en rechercher 6 et passe son prochain tour.`);
-        }
-        else {
+
+            herosArray.splice(herosArray.indexOf(this),1);
+
+        } else {
             console.log(`L'attaque de votre ${this.poste} lui a coûté 2 flèches. Mais il a pu en récupérer une. Il en possède donc ${this.fleches}`);
         }
 
@@ -66,7 +68,15 @@ class Mage extends Hero {
     }
 
     competence(){
-        
+        this.mana -= 2;
+
+        if(this.mana <= 0){
+            console.log(`Il ne reste plus que ${this.mana} points de mana à votre ${this.poste}. Il ne peut plus attaquer, mais récupère 7 points d'attaque pour le prochain tour.`);
+
+            this.mana += 7;
+
+            herosArray.splice(herosArray.indexOf(this),1);
+        }
     }
 }
 

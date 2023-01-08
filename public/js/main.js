@@ -66,7 +66,7 @@ herosArray.forEach(element => {
         }
         else if (isNaN(element.vie) == true){
             console.log("Ceci ne fonctionne pas. Veuillez entrer un nombre, svp");
-        }
+        };
 
     } while (element.vie > ptVie || element.vie < 0 || isNaN(element.vie) == true); 
     
@@ -90,14 +90,14 @@ if (ptVie !== 0) {
         case(ajout == "archer"):
             archer.vie += ptVie;
             break;
-    }
+    };
 
     ptVie = 0;
 
     console.log(`C'est bon, il vous reste ${ptVie} point de vie à distribuer, vous pouvez passer à la suite`);
 } else {
     console.log(`Vos points de vie sont distribués, vous pouvez passer à la suite`);
-}
+};
 
 
 let ptAttaque = 90;
@@ -117,7 +117,7 @@ herosArray.forEach(element => {
         }
         else if (isNaN(element.attaque) == true){
             console.log("Ceci ne fonctionne pas. Veuillez entrer un nombre, svp");
-        }
+        };
 
     } while (element.attaque > ptAttaque || element.attaque < 0 || isNaN(element.attaque) == true); 
     
@@ -142,12 +142,12 @@ if (ptAttaque !== 0) {
         case(ajout == "archer"):
             archer.attaque += ptAttaque;
             break;
-    }
+    };
 
     console.log(`C'est bon, il vous reste ${ptAttaque} point de vie à distribuer`);
 } else {
     console.log(`Tous vos points d'attaque sont distribuésL`);
-}
+};
 
 console.log(`Vous allez maintenant pouvoir choisir le mode de combat de vos héros`);
 
@@ -178,7 +178,7 @@ herosArray.forEach(element => {
         default:
             console.log(`Ceci ne fonctionne pas, veuillez introduire un mode`);
             element.mode = prompt(`Sur quel mode voulez-vous mettre votre ${element.nom}: defense ou attaque ?`);
-    }
+    };
 
 });
 
@@ -208,21 +208,51 @@ do {
             } else {
                 console.log(`Votre ${element.poste} a fait mouche! Il ne reste plus de points de vie au boss.`);
 
-            }
-        } else {
-            console.log(`ce héros est mort`);
-        }
-
-        element.competence()
+            };
+        };
     });
 
 
     let random = Math.floor(Math.random()*herosArray.length);
 
+    
     if (elBoss.vie > 0 && herosArray[random].vie > 0){
         herosArray[random].vie -= elBoss.attaque;
         console.log(`votre ${herosArray[random].poste}, ${herosArray[random].nom}, a été touché par le boss. Il ne lui reste plus que ${herosArray[random].vie} points de vie`);
-    }
+    };
 
-    console.log(`La rage de votre ${guerrier.poste} est à ${guerrier.rage} points. Votre ${archer.poste} possède ${archer.fleches}. Votre ${mage.poste} possède ${mage.mana}`)
-} while (elBoss.vie >= 0 || herosArray.length == 0);
+
+    console.log(`La rage de votre ${guerrier.poste} est à ${guerrier.rage} points. Votre ${archer.poste} possède ${archer.fleches}. Votre ${mage.poste} possède ${mage.mana}`);
+
+
+
+    if(herosArray.indexOf(mage) == -1){
+        console.log(`Votre ${mage.poste} est réinséré pour la partie suivante`);
+        herosArray.push(mage);
+    };
+
+    if(herosArray.indexOf(guerrier) == -1){
+        console.log(`Votre ${guerrier.poste} est réinséré pour la partie suivante`);
+        herosArray.push(guerrier);
+    };
+
+
+
+    herosArray.forEach(element => {
+        if(element.vie <=0){
+            console.log(`Votre ${element.poste}, est mort`);
+
+            herosArray.splice(herosArray.indexOf(element),1);
+            console.log(herosArray);
+        };
+    });
+
+    herosArray.forEach(element => element.competence());
+
+} while ((herosArray.length > 0) && (elBoss.vie > 0));
+
+if(elBoss.vie <= 0){
+        console.log(`Vous avez vaincu le boss, vous avez gagné la partie !`);
+} else if (herosArray.length == 0) {
+    console.log(`Le boss a vaincu tous vos héros, vous avez perdu la partie`);
+}

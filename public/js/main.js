@@ -33,6 +33,8 @@ let flechesAleat = Math.floor(Math.random()*flechesArray.length);
 let manaAleat = Math.floor(Math.random()*manaArray.length);
 
 let elBoss = bossArray[bossAleat];
+let vieTot_boss = elBoss.vie;
+
 archer.fleches = flechesArray[flechesAleat];
 mage.mana = manaArray[manaAleat];
 
@@ -41,13 +43,16 @@ mage.mana = manaArray[manaAleat];
 
 console.log(`Bienvenue dans cette nouvelles partie de Geek of Legends ! Votre équipe est constituée de 3 héros, un guerrier / un mage / un archer, qui vont se battre courageusement contre le boss ${elBoss.nom}. Continuez pour nommer les membres de votre équipe`);
 
+
+// définition du nom des personnages
+
 herosArray.forEach(element =>
     element.nom = "Yves" //prompt(`Donnez un nom à votre ${element.poste}`)
 );
 
 
 
-
+// définition point de vie
 
 let ptVie = 600;
 
@@ -74,7 +79,6 @@ herosArray.forEach(element => {
     ptVie -= element.vie;
 });
 
-
 if (ptVie !== 0) {
     let ajout = "archer"; //prompt(`Il vous reste ${ptVie} points de vie. Choisissez à quel personnage les donner: le guerrier, le mage ou l'archer ?`);
 
@@ -99,6 +103,9 @@ if (ptVie !== 0) {
     console.log(`Vos points de vie sont distribués, vous pouvez passer à la suite`);
 };
 
+
+
+//définition des points d'attaque
 
 let ptAttaque = 90;
 
@@ -151,6 +158,10 @@ if (ptAttaque !== 0) {
 
 console.log(`Vous allez maintenant pouvoir choisir le mode de combat de vos héros`);
 
+
+
+// définition du mode
+
 herosArray.forEach(element => {
     element.mode = "attaque"; //prompt(`Sur quel mode voulez-vous mettre votre ${element.nom}: defense ou attaque ?`);
 
@@ -160,6 +171,7 @@ herosArray.forEach(element => {
 
 console.log(`Récapitulatif de votre équipe: votre ${guerrier.poste},${guerrier.nom} possède ${guerrier.vie} points de vie et ${guerrier.attaque} point d'attaque / votre ${mage.poste},${mage.nom} possède ${mage.vie} points de vie et ${mage.attaque} point d'attaque. Ce personnage possède ${mage.mana} points de mana / votre ${archer.poste},${archer.nom} possède ${archer.vie} points de vie et ${archer.attaque} point d'attaque. Ce personnage possède ${archer.fleches} flèches dans son carquois`);
 console.log("Vous allez pouvoir débuter la partie !");
+
 
 
 //partie
@@ -224,7 +236,14 @@ do {
 
     herosArray.forEach(element => element.competence());
 
+    if (elBoss.vie <= (vieTot_boss*0.2)){
+        elBoss.Duel();
+    }
+
 } while ((herosArray.length > 0) && (elBoss.vie > 0));
+
+
+// issue de la partie 
 
 if(elBoss.vie <= 0){
         console.log(`Vous avez vaincu le boss, vous avez gagné la partie !`);

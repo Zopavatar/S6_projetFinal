@@ -6,6 +6,32 @@ class Hero extends Perso {
         this.mode = mode;
         this.poste = poste;
     }
+
+    modeChoice(){
+        switch(true){
+            case this.mode == "attaque":
+                this.attaque = this.attaque*1.4;
+                this.vie = this.vie*0.75;
+
+                console.log(`votre ${this.poste} est en mode ${this.mode}. Il possède un quart de ses point de vie en moins (${this.vie}),mais ses points d'attaque augmentent de deux cinquième (${this.attaque})`);
+                break;
+
+            case this.mode == "defense":
+                this.attaque = this.attaque*0.5;
+                this.vie = this.vie*2.5;
+
+                console.log(`votre ${this.poste} est en mode ${this.mode}. Il possède seulement la moitié de ses points d'attaque (${this.vie}), mais ses points de vie augment de 2 fois et demi (${this.vie}) `);
+                break;
+
+            case this.mode == "normal":
+                console.log(`votre ${this.poste} est en mode ${this.mode}.`);
+                break;
+
+            default:
+                console.log(`Ceci ne fonctionne pas, veuillez introduire un mode`);
+                this.mode = prompt(`Sur quel mode voulez-vous mettre votre ${this.nom}: defense ou attaque ?`);
+        };  
+    }
 }
 
 class Guerrier extends Hero {

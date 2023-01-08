@@ -153,33 +153,8 @@ console.log(`Vous allez maintenant pouvoir choisir le mode de combat de vos hér
 
 herosArray.forEach(element => {
     element.mode = "attaque"; //prompt(`Sur quel mode voulez-vous mettre votre ${element.nom}: defense ou attaque ?`);
-    
-    switch(true){
-        case element.mode == "attaque":
-            element.attaque = element.attaque*1.4;
-            element.vie = element.vie*0.75;
 
-            console.log(`votre ${element.poste} est en mode ${element.mode}. Il possède un quart de ses point de vie en moins (${element.vie}),mais ses points d'attaque augmentent de deux cinquième (${element.attaque})`);
-            break;
-
-        case element.mode == "defense":
-            element.attaque = element.attaque*0.5;
-            element.vie = element.vie*2.5;
-
-            herosArray.push(element);
-
-            console.log(`votre ${element.poste} est en mode ${element.mode}. Il possède seulement la moitié de ses points d'attaque (${element.vie}), mais ses points de vie augment de 2 fois et demi (${element.vie}) `);
-            break;
-
-        case element.mode == "normal":
-            console.log(`votre ${element.poste} est en mode ${element.mode}.`);
-            break;
-
-        default:
-            console.log(`Ceci ne fonctionne pas, veuillez introduire un mode`);
-            element.mode = prompt(`Sur quel mode voulez-vous mettre votre ${element.nom}: defense ou attaque ?`);
-    };
-
+    element.modeChoice();
 });
 
 

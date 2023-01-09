@@ -120,7 +120,7 @@ export class Mage extends Hero {
         this.mana -= 2;
 
         if(this.mana <= 0){
-            alert(`Il ne reste plus que ${Math.floor(this.mana)} points de mana à votre ${this.poste}. Il ne peut plus attaquer, mais récupère 7 points d'attaque pour le prochain tour.`);
+            alert(`Il ne reste plus que ${Math.floor(this.mana)} points de mana à votre ${this.poste}. Il ne peut plus attaquer, mais récupère 7 points de mana pour le prochain tour.`);
 
             this.mana += 7;
 

@@ -28,11 +28,18 @@ mage.mana = manaArray[manaAleat];
 
 let askEnigme = "";
 
-
 let texte = document.getElementById("texte");
 let lancement = document.getElementById("lancement");
 
-texte.innerText = `Bienvenue dans cette nouvelles partie de Geek of Legends ! Votre équipe est constituée de 3 héros, un guerrier / un mage / un archer, qui vont se battre courageusement contre le boss.`;
+
+let partie = 0;
+
+function start(){
+    partie = 0;
+    texte.innerText = `Bienvenue dans cette nouvelles partie de Geek of Legends ! Votre équipe est constituée de 3 héros, un guerrier / un mage / un archer, qui vont se battre courageusement contre le boss.`;
+}
+
+start();
 
 
 function prems(){
@@ -202,7 +209,8 @@ function dems(){
         
                         alert(`Votre ${element.poste} a fait mouche! Il ne reste plus que ${Math.floor(elBoss.vie)} points de vie au boss.`);
                     } else {
-                    alert(`Votre ${element.poste} a fait mouche! Il ne reste plus de points de vie au boss.`);
+                    
+                        alert(`Votre ${element.poste} a fait mouche! Il ne reste plus de points de vie au boss.`);
         
                     };
                 } else if (element.mode == "defense"){
@@ -245,7 +253,7 @@ function dems(){
 
 
         herosArray.forEach(element => {
-            if(element.mode == "attaque") {
+            if(element.mode == "attaque" || element.mode == "normal") {
                 element.competence();
             }
         });
@@ -292,8 +300,6 @@ function dems(){
 }
 
 
-let partie = 0;
-
 lancement.addEventListener("click",function(){
     partie++;
 
@@ -303,6 +309,14 @@ lancement.addEventListener("click",function(){
             break;
         case partie == 2:
             dems();
+            break;
+
+        case partie == 3:
+            lancement();
+            break;
+
+        case partie == 4:
+            start();
             break;
     }
 });

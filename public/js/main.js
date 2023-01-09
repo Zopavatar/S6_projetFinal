@@ -28,19 +28,28 @@ mage.mana = manaArray[manaAleat];
 
 let askEnigme = "";
 
+
 let texte = document.getElementById("texte");
+let lancement = document.getElementById("lancement");
+
 texte.innerText = `Bienvenue dans cette nouvelles partie de Geek of Legends ! Votre équipe est constituée de 3 héros, un guerrier / un mage / un archer, qui vont se battre courageusement contre le boss.`;
 
 
-document.getElementById("lancement").addEventListener("click", function(){
-    texte.innerText = `Vous allez devoir affronter ${elBoss.nom}.`;
-    lancement.innerText = "Next";
+function prems(){
+    
+        texte.innerText = `Vous allez devoir affronter ${elBoss.nom}.`;
+        lancement.innerText = "Next";
+}
 
+function dems(){
     // définition du nom des personnages
+
+    alert(`Vous allez pouvoir nommer vos personnages`);
 
     herosArray.forEach(element =>
         element.nom = prompt(`Donnez un nom à votre ${element.poste}`)
     );
+
 
 
     // définition point de vie
@@ -215,23 +224,22 @@ document.getElementById("lancement").addEventListener("click", function(){
         };
 
 
-        if(herosArray.indexOf(mage) == -1){
+        if(herosArray.indexOf(mage) == -1 && mage.vie > 0){
             alert(`Votre ${mage.poste} est réinséré pour la partie suivante`);
             herosArray.push(mage);
         };
 
-        if(herosArray.indexOf(archer) == -1){
+        if(herosArray.indexOf(archer) == -1 && archer.vie > 0){
             alert(`Votre ${archer.poste} est réinséré pour la partie suivante`);
             herosArray.push(archer);
         };
-
 
 
         herosArray.forEach(element => {
             if(element.vie <=0){
                 alert(`Votre ${element.poste}, est mort`);
 
-                herosArray.splice(herosArray.indexOf(element),1);
+                herosArray.splice(element,1);
             };
         });
 
@@ -241,6 +249,7 @@ document.getElementById("lancement").addEventListener("click", function(){
                 element.competence();
             }
         });
+
 
         alert(`Récapitulatif de votre équipe: votre ${guerrier.poste},${guerrier.nom} possède ${Math.floor(guerrier.vie)} points de vie et ${Math.floor(guerrier.attaque)} point d'attaque / votre ${mage.poste},${mage.nom} possède ${mage.vie} points de vie et ${Math.floor(mage.attaque)} point d'attaque. Ce personnage possède ${Math.floor(mage.mana)} points de mana / votre ${archer.poste},${archer.nom} possède ${Math.floor(archer.vie)} points de vie et ${Math.floor(archer.attaque)} point d'attaque. Ce personnage possède ${Math.floor(archer.fleches)} flèches dans son carquois`);
         alert(`Le boss ${elBoss.nom} a ${Math.floor(elBoss.vie)} points de vie.`);
@@ -279,5 +288,21 @@ document.getElementById("lancement").addEventListener("click", function(){
     } else if (herosArray.length == 0) {
         alert(`Le boss a vaincu tous vos héros, vous avez perdu la partie`);
         texte.innerText = (`You Lose!`);
+    }
+}
+
+
+let partie = 0;
+
+lancement.addEventListener("click",function(){
+    partie++;
+
+    switch (true){
+        case partie == 1:
+            prems();
+            break;
+        case partie == 2:
+            dems();
+            break;
     }
 });

@@ -32,13 +32,11 @@ let askEnigme = "";
 
 alert(`Bienvenue dans cette nouvelles partie de Geek of Legends ! Votre équipe est constituée de 3 héros, un guerrier / un mage / un archer, qui vont se battre courageusement contre le boss ${elBoss.nom}. Continuez pour nommer les membres de votre équipe`);
 
-
 // définition du nom des personnages
 
 herosArray.forEach(element =>
     element.nom = prompt(`Donnez un nom à votre ${element.poste}`)
 );
-
 
 
 // définition point de vie
@@ -244,9 +242,11 @@ do {
     
                 case askEnigme == "non":
                     alert(`Vous avez décidé de ne pas tenter le tout pour le tout. Vous allez continuer la partie.`);
+                    break;
     
                 default:
                     alert(`Veuillez entrer "oui" ou "non"`);
+                    break;
             }
         } while (askEnigme !== "oui" && askEnigme !== "non");
     }

@@ -33,7 +33,7 @@ class Hero extends Perso {
     }
 }
 
-class Guerrier extends Hero {
+export class Guerrier extends Hero {
     constructor(nom,vie,poste,attaque,mode){
         super(nom,vie,poste,attaque,mode);
         this.rage = 0;
@@ -60,7 +60,7 @@ class Guerrier extends Hero {
 
 
 
-class Archer extends Hero {
+export class Archer extends Hero {
     constructor(nom,vie,poste,attaque,mode){
         super(nom,vie,poste,attaque,mode);
         this.fleches = 0;
@@ -89,7 +89,7 @@ export let flechesArray = [7,8,9,10,11];
 
 
 
-class Mage extends Hero {
+export class Mage extends Hero {
     constructor(nom,vie,poste,attaque,mode){
         super(nom,vie,poste,attaque,mode);
         this.mana = 0;

@@ -170,7 +170,7 @@ do {
             alert(`Choisissez le mode de votre ${element.poste}`);
             
             do {
-                element.mode = prompt(`Sur quel mode voulez-vous mettre votre ${element.poste}, ${element.nom}: normal, defense ou attaque ?`);
+                element.mode = prompt(`Sur quel mode voulez-vous mettre votre ${element.poste}, ${element.nom}: normal, defense ou attaque ? Sachant qu'il ne lui reste plus que ${element.vie} points de vie.`);
 
                 element.modeChoice();
 
@@ -179,16 +179,20 @@ do {
 
             //attaque
 
-            elBoss.vie -= element.attaque;
+            if(element.mode == "attaque" || element.mode == "normal"){
+                elBoss.vie -= element.attaque;
 
-            if (elBoss.vie > 0){
-                alert(`Votre ${element.poste}, ${element.nom}, attaque le boss ${elBoss.nom}`);
-
-                alert(`Votre ${element.poste} a fait mouche! Il ne reste plus que ${Math.floor(elBoss.vie)} points de vie au boss.`);
-            } else {
-               alert(`Votre ${element.poste} a fait mouche! Il ne reste plus de points de vie au boss.`);
-
-            };
+                if (elBoss.vie > 0){
+                    alert(`Votre ${element.poste}, ${element.nom}, attaque le boss ${elBoss.nom}`);
+    
+                    alert(`Votre ${element.poste} a fait mouche! Il ne reste plus que ${Math.floor(elBoss.vie)} points de vie au boss.`);
+                } else {
+                   alert(`Votre ${element.poste} a fait mouche! Il ne reste plus de points de vie au boss.`);
+    
+                };
+            } else if (element.mode == "defense"){
+                alert(`Ce heros est en mode défense, il reste en retrait`);
+            }
 
 
             element.modeReinit();
@@ -232,9 +236,9 @@ do {
     alert(`Le boss ${elBoss.nom} a ${Math.floor(elBoss.vie)} points de vie.`);
 
 
-    if (elBoss.vie <= (vieTot_boss*0.2)){
+    if (elBoss.vie <= (vieTot_boss*0.2) && elBoss.vie > 0){
         do {
-            askEnigme = prompt(`Vous avez la possibilité de vaincre le boss ${elBoss.poste} en répondant correctement à un énigme. Vous aurez cependant 3 chances de réponse. si vous dépassez ce nombre, c'est vous qui perdrez la partie. Tapez "oui" pour tenter votre chance, tapez "non" pour continuer le court normal de la parite`);
+            askEnigme = prompt(`Vous avez la possibilité de vaincre le boss ${elBoss.nom} en répondant correctement à un énigme. Vous aurez cependant 3 chances de réponse. Si vous dépassez ce nombre, c'est vous qui perdrez la partie. Tapez "oui" pour tenter votre chance, tapez "non" pour continuer le court normal de la partie`);
 
 
             switch (true){

@@ -92,17 +92,14 @@ function dems(){
         switch(true){
             case(ajout == "guerrier"):
                 guerrier.vie = (guerrier.vie*1)+ptVie;
-                alert(guerrier.vie);
                 break;
 
             case(ajout == "mage"):
                 mage.vie = (mage.vie*1)+ptVie;
-                alert(mage.vie);
                 break;
 
             case(ajout == "archer"):
                 archer.vie = (archer.vie*1)+ptVie;
-                alert(archer.vie);
                 break;
         };
 
@@ -213,6 +210,8 @@ function dems(){
                         alert(`Votre ${element.poste} a fait mouche! Il ne reste plus de points de vie au boss.`);
         
                     };
+
+                    element.competence();
                 } else if (element.mode == "defense"){
                     alert(`Ce heros est en mode défense, il reste en retrait`);
                 }
@@ -249,13 +248,6 @@ function dems(){
 
                 herosArray.splice(element,1);
             };
-        });
-
-
-        herosArray.forEach(element => {
-            if(element.mode == "attaque" || element.mode == "normal") {
-                element.competence();
-            }
         });
 
 
@@ -307,15 +299,12 @@ lancement.addEventListener("click",function(){
         case partie == 1:
             prems();
             break;
+
         case partie == 2:
             dems();
             break;
 
         case partie == 3:
-            lancement();
-            break;
-
-        case partie == 4:
             start();
             break;
     }

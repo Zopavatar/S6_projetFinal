@@ -210,14 +210,10 @@ function dems(){
                         alert(`Votre ${element.poste} a fait mouche! Il ne reste plus de points de vie au boss.`);
         
                     };
-
-                    element.competence();
                 } else if (element.mode == "defense"){
                     alert(`Ce heros est en mode défense, il reste en retrait`);
                 }
 
-
-                element.modeReinit();
             };
         });
 
@@ -251,7 +247,16 @@ function dems(){
         });
 
 
-        alert(`Récapitulatif de votre équipe: votre ${guerrier.poste},${guerrier.nom} possède ${Math.floor(guerrier.vie)} points de vie et ${Math.floor(guerrier.attaque)} point d'attaque / votre ${mage.poste},${mage.nom} possède ${mage.vie} points de vie et ${Math.floor(mage.attaque)} point d'attaque. Ce personnage possède ${Math.floor(mage.mana)} points de mana / votre ${archer.poste},${archer.nom} possède ${Math.floor(archer.vie)} points de vie et ${Math.floor(archer.attaque)} point d'attaque. Ce personnage possède ${Math.floor(archer.fleches)} flèches dans son carquois`);
+        herosArray.forEach(element => {
+            if(element.mode == "attaque" || element.mode == "normal") {
+                element.competence();
+            }
+
+            element.modeReinit();
+        });
+
+
+        alert(`Récapitulatif de votre équipe: votre ${guerrier.poste},${guerrier.nom} possède ${Math.floor(guerrier.vie)} points de vie et ${Math.floor(guerrier.attaque)} point d'attaque / votre ${mage.poste},${mage.nom} possède ${Math.floor(mage.vie)} points de vie et ${Math.floor(mage.attaque)} point d'attaque. Ce personnage possède ${Math.floor(mage.mana)} points de mana / votre ${archer.poste},${archer.nom} possède ${Math.floor(archer.vie)} points de vie et ${Math.floor(archer.attaque)} point d'attaque. Ce personnage possède ${Math.floor(archer.fleches)} flèches dans son carquois`);
         alert(`Le boss ${elBoss.nom} a ${Math.floor(elBoss.vie)} points de vie.`);
 
 

@@ -13,14 +13,14 @@ class Hero extends Perso {
                 this.attaque = this.attaque*1.4;
                 this.vie = this.vie*0.75;
 
-                alert(`votre ${this.poste} est en mode ${this.mode}. Il possède un quart de ses point de vie en moins (${this.vie}),mais ses points d'attaque augmentent de deux cinquième (${this.attaque})`);
+                alert(`votre ${this.poste} est en mode ${this.mode}. Il possède un quart de ses point de vie en moins (${Math.floor(this.vie)}),mais ses points d'attaque augmentent de deux cinquième (${Math.floor(this.attaque)})`);
                 break;
 
             case this.mode == "defense":
                 this.attaque *= 0.5;
                 this.vie *= 2.5;
 
-                alert(`votre ${this.poste} est en mode ${this.mode}. Il possède seulement la moitié de ses points d'attaque (${this.attaque}), mais ses points de vie augment de 2 fois et demi (${this.vie}) `);
+                alert(`votre ${this.poste} est en mode ${this.mode}. Il possède seulement la moitié de ses points d'attaque (${Math.floor(this.attaque)}), mais ses points de vie augment de 2 fois et demi (${Math.floor(this.vie)}) `);
                 break;
 
             case this.mode == "normal":
@@ -29,7 +29,6 @@ class Hero extends Perso {
 
             default:
                 alert(`Ceci ne fonctionne pas, veuillez introduire un mode`);
-                this.mode = prompt(`Sur quel mode voulez-vous mettre votre ${this.nom}: defense ou attaque ?`);
         };  
     }
 }
@@ -43,12 +42,12 @@ class Guerrier extends Hero {
     competence(){
         this.rage += 1;
 
-        alert(`La rage de votre ${(this.nom)} est de ${this.rage} points.`);
+        alert(`La rage de votre ${(this.poste)} est de ${Math.floor(this.rage)} points.`);
 
         if(this.rage == 4){
             this.attaque *=1.25;
 
-            alert(`Votre ${this.poste} a ${this.rage} points de rage. Ses points d'attaque sont augmenté de 25% pendant un tour. Il possède donc ${this.attaque} points d'attaque jusqu'au prochain tour.`);
+            alert(`Votre ${this.poste} a ${Math.floor(this.rage)} points de rage. Ses points d'attaque sont augmenté de 25% pendant un tour. Il possède donc ${Math.floor(this.attaque)} points d'attaque jusqu'au prochain tour.`);
 
         }
 
@@ -80,7 +79,7 @@ class Archer extends Hero {
             herosArray.splice(herosArray.indexOf(this),1);
 
         } else {
-            alert(`L'attaque de votre ${this.poste} lui a coûté 2 flèches. Mais il a pu en récupérer une. Il en possède donc ${this.fleches}`);
+            alert(`L'attaque de votre ${this.poste} lui a coûté 2 flèches. Mais il a pu en récupérer une. Il en possède donc ${Math.floor(this.fleches)}`);
         }
 
     }
@@ -100,13 +99,13 @@ class Mage extends Hero {
         this.mana -= 2;
 
         if(this.mana <= 0){
-            alert(`Il ne reste plus que ${this.mana} points de mana à votre ${this.poste}. Il ne peut plus attaquer, mais récupère 7 points d'attaque pour le prochain tour.`);
+            alert(`Il ne reste plus que ${Math.floor(this.mana)} points de mana à votre ${this.poste}. Il ne peut plus attaquer, mais récupère 7 points d'attaque pour le prochain tour.`);
 
             this.mana += 7;
 
             herosArray.splice(herosArray.indexOf(this),1);
         } else {
-            alert(`Le tour de votre ${this.poste} lui a coûté 2 points de mana.`);
+            alert(`Le tour de votre ${this.poste} lui a coûté 2 points de mana. Il ne lui en reste donc plus que ${Math.floor(this.mana)}.`);
         }
     }
 }

@@ -26,6 +26,8 @@ archer.fleches = flechesArray[flechesAleat];
 mage.mana = manaArray[manaAleat];
 
 
+let askEnigme = "";
+
 
 
 alert(`Bienvenue dans cette nouvelles partie de Geek of Legends ! Votre équipe est constituée de 3 héros, un guerrier / un mage / un archer, qui vont se battre courageusement contre le boss ${elBoss.nom}. Continuez pour nommer les membres de votre équipe`);
@@ -43,12 +45,12 @@ herosArray.forEach(element =>
 
 let ptVie = 800;
 
-alert(`Vous avez nommé vos personnages ${guerrier.nom}, ${mage.nom} et ${archer.nom}. Vous allez maintenant pouvoir leur distribuer ${ptVie} points de vie`);
+alert(`Vous avez nommé vos personnages ${guerrier.nom}, ${mage.nom} et ${archer.nom}. Vous allez maintenant pouvoir leur distribuer ${Math.floor(ptVie)} points de vie`);
 
 herosArray.forEach(element => {
 
      do {
-        element.vie = prompt(`Combien de point de vie voulez-vous donner à ${element.nom}, votre ${element.poste} ? Il vous en reste ${ptVie}/800`);
+        element.vie = prompt(`Combien de point de vie voulez-vous donner à ${element.nom}, votre ${element.poste} ? Il vous en reste ${Math.floor(ptVie)}/800`);
 
         if (element.vie > ptVie) {
             alert("Vous n'avez pas suffisamment de points");
@@ -67,19 +69,22 @@ herosArray.forEach(element => {
 });
 
 if (ptVie !== 0) {
-    let ajout = prompt(`Il vous reste ${ptVie} points de vie. Choisissez à quel personnage les donner: le guerrier, le mage ou l'archer ?`);
+    let ajout = prompt(`Il vous reste ${Math.floor(ptVie)} points de vie. Choisissez à quel personnage les donner: le guerrier, le mage ou l'archer ?`);
 
     switch(true){
         case(ajout == "guerrier"):
-            guerrier.vie += ptVie;
+            guerrier.vie = (guerrier.vie*1)+ptVie;
+            alert(guerrier.vie);
             break;
 
         case(ajout == "mage"):
-            mage.vie += ptVie;
+            mage.vie = (mage.vie*1)+ptVie;
+            alert(mage.vie);
             break;
 
         case(ajout == "archer"):
-            archer.vie += ptVie;
+            archer.vie = (archer.vie*1)+ptVie;
+            alert(archer.vie);
             break;
     };
 
@@ -91,17 +96,16 @@ if (ptVie !== 0) {
 };
 
 
-
 //définition des points d'attaque
 
 let ptAttaque = 100;
 
-alert(`Vous allez maintenant pouvoir leur distribuer ${ptAttaque} points d'attaque`);
+alert(`Vous allez maintenant pouvoir leur distribuer ${Math.floor(ptAttaque)} points d'attaque`);
 
 herosArray.forEach(element => {
 
     do {
-        element.attaque = prompt(`Combien de point d'attaque voulez-vous donner à ${element.nom}, votre ${element.poste} ? Il vous en reste ${ptAttaque}/100`);
+        element.attaque = prompt(`Combien de point d'attaque voulez-vous donner à ${element.nom}, votre ${element.poste} ? Il vous en reste ${Math.floor(ptAttaque)}/100`);
 
         if (element.attaque > ptAttaque) {
             alert("Vous n'avez pas suffisamment de points");
@@ -122,23 +126,25 @@ herosArray.forEach(element => {
 
 
 if (ptAttaque !== 0) {
-    let ajout = prompt(`Il vous reste ${ptAttaque} points d'attaque. Choisissez à quel personnage les donner: le guerrier, le mage ou l'archer ?`);
+    let ajout = prompt(`Il vous reste ${Math.floor(ptAttaque)} points d'attaque. Choisissez à quel personnage les donner: le guerrier, le mage ou l'archer ?`);
 
     switch(true){
         case(ajout == "guerrier"):
-            guerrier.attaque += ptAttaque;
+            guerrier.attaque = (guerrier.attaque*1)+ptAttaque;
             break;
 
         case(ajout == "mage"):
-            mage.attaque += ptAttaque;
+            mage.attaque = (mage.attaque*1)+ptAttaque;
             break;
 
         case(ajout == "archer"):
-            archer.attaque += ptAttaque;
+            archer.attaque = (archer.attaque*1)+ptAttaque;
             break;
     };
 
-    alert(`C'est bon, il vous reste ${ptAttaque} point de vie à distribuer`);
+    ptAttaque = 0;
+
+    alert(`C'est bon, il vous reste ${Math.floor(ptAttaque)} point de vie à distribuer`);
 } else {
     alert(`Tous vos points d'attaque sont distribués`);
 };
@@ -150,13 +156,16 @@ alert(`Vous allez maintenant pouvoir choisir le mode de combat de vos héros`);
 // définition du mode
 
 herosArray.forEach(element => {
-    element.mode = prompt(`Sur quel mode voulez-vous mettre votre ${element.nom}: defense ou attaque ?`);
+    do {
+        element.mode = prompt(`Sur quel mode voulez-vous mettre votre ${element.poste}, ${element.nom}: normal, defense ou attaque ?`);
 
-    element.modeChoice();
+        element.modeChoice();
+
+    } while (element.mode !== "normal" && element.mode !== "defense" && element.mode !== "attaque");
 });
 
 
-alert(`Récapitulatif de votre équipe: votre ${guerrier.poste},${guerrier.nom} possède ${guerrier.vie} points de vie et ${guerrier.attaque} point d'attaque / votre ${mage.poste},${mage.nom} possède ${mage.vie} points de vie et ${mage.attaque} point d'attaque. Ce personnage possède ${mage.mana} points de mana / votre ${archer.poste},${archer.nom} possède ${archer.vie} points de vie et ${archer.attaque} point d'attaque. Ce personnage possède ${archer.fleches} flèches dans son carquois`);
+alert(`Récapitulatif de votre équipe: votre ${guerrier.poste},${guerrier.nom} possède ${Math.floor(guerrier.vie)} points de vie et ${Math.floor(guerrier.attaque)} point d'attaque / votre ${mage.poste},${mage.nom} possède ${Math.floor(mage.vie)} points de vie et ${Math.floor(mage.attaque)} point d'attaque. Ce personnage possède ${Math.floor(mage.mana)} points de mana / votre ${archer.poste},${archer.nom} possède ${Math.floor(archer.vie)} points de vie et ${Math.floor(archer.attaque)} point d'attaque. Ce personnage possède ${Math.floor(archer.fleches)} flèches dans son carquois`);
 alert("Vous allez pouvoir débuter la partie !");
 
 
@@ -178,7 +187,7 @@ do {
             if (elBoss.vie > 0){
                 alert(`Votre ${element.poste}, ${element.nom}, attaque le boss ${elBoss.nom}`);
 
-                alert(`Votre ${element.poste} a fait mouche! Il ne reste plus que ${elBoss.vie} points de vie au boss.`);
+                alert(`Votre ${element.poste} a fait mouche! Il ne reste plus que ${Math.floor(elBoss.vie)} points de vie au boss.`);
             } else {
                alert(`Votre ${element.poste} a fait mouche! Il ne reste plus de points de vie au boss.`);
 
@@ -219,11 +228,27 @@ do {
 
     herosArray.forEach(element => element.competence());
 
-    alert(`Récapitulatif de votre équipe: votre ${guerrier.poste},${guerrier.nom} possède ${guerrier.vie} points de vie et ${guerrier.attaque} point d'attaque / votre ${mage.poste},${mage.nom} possède ${mage.vie} points de vie et ${mage.attaque} point d'attaque. Ce personnage possède ${mage.mana} points de mana / votre ${archer.poste},${archer.nom} possède ${archer.vie} points de vie et ${archer.attaque} point d'attaque. Ce personnage possède ${archer.fleches} flèches dans son carquois`);
-    alert(`Le boss ${elBoss.nom} a ${elBoss.vie} points de vie.`);
+    alert(`Récapitulatif de votre équipe: votre ${guerrier.poste},${guerrier.nom} possède ${Math.floor(guerrier.vie)} points de vie et ${Math.floor(guerrier.attaque)} point d'attaque / votre ${mage.poste},${mage.nom} possède ${mage.vie} points de vie et ${Math.floor(mage.attaque)} point d'attaque. Ce personnage possède ${Math.floor(mage.mana)} points de mana / votre ${archer.poste},${archer.nom} possède ${Math.floor(archer.vie)} points de vie et ${Math.floor(archer.attaque)} point d'attaque. Ce personnage possède ${Math.floor(archer.fleches)} flèches dans son carquois`);
+    alert(`Le boss ${elBoss.nom} a ${Math.floor(elBoss.vie)} points de vie.`);
+
 
     if (elBoss.vie <= (vieTot_boss*0.2)){
-        elBoss.Duel();
+        do {
+            askEnigme = prompt(`Vous avez la possibilité de vaincre le boss ${elBoss.poste} en répondant correctement à un énigme. Vous aurez cependant 3 chances de réponse. si vous dépassez ce nombre, c'est vous qui perdrez la partie. Tapez "oui" pour tenter votre chance, tapez "non" pour continuer le court normal de la parite`);
+
+
+            switch (true){
+                case askEnigme == "oui":
+                    elBoss.Duel();
+                    break;
+    
+                case askEnigme == "non":
+                    alert(`Vous avez décidé de ne pas tenter le tout pour le tout. Vous allez continuer la partie.`);
+    
+                default:
+                    alert(`Veuillez entrer "oui" ou "non"`);
+            }
+        } while (askEnigme !== "oui" && askEnigme !== "non");
     }
 
 } while ((herosArray.length > 0) && (elBoss.vie > 0));

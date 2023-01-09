@@ -20,11 +20,16 @@ class Boss extends Perso {
 
             if(enigmeArray[randomEnigme].enigmeRep !== enigmeArray[randomEnigme].propal){
                 alert(`Ceci n'est pas la bonne réponse, réessayez. Il vous reste ${compteur}/3 chances.`);
+
+                if (compteur >= 2){
+                    alert(`Vous semblez galérer. Voici un indice: ${enigmeArray[randomEnigme].indice}`)
+                }
+
             } else if (enigmeArray[randomEnigme].enigmeRep == enigmeArray[randomEnigme].propal){
                 alert(`Vous avez bien répondu, le boss est vaincu !`);
                 this.vie = 0;
             }
-            
+
             if (compteur == 3){
                 alert(`Vous avez épuisé toutes vos chances. Le boss vous a vaincu et tue toute votre équipe`);
                 herosArray.length = 0;

@@ -28,9 +28,7 @@ mage.mana = manaArray[manaAleat];
 
 let askEnigme = "";
 
-
-
-alert(`Bienvenue dans cette nouvelles partie de Geek of Legends ! Votre équipe est constituée de 3 héros, un guerrier / un mage / un archer, qui vont se battre courageusement contre le boss ${elBoss.nom}. Continuez pour nommer les membres de votre équipe`);
+alert(`Bienvenue dans cette nouvelles partie de Geek of Legends ! Votre équipe est constituée de 3 héros, un guerrier / un mage / un archer, qui vont se battre courageusement contre le boss ${elBoss.nom}.`);
 
 // définition du nom des personnages
 
@@ -147,24 +145,7 @@ if (ptAttaque !== 0) {
     alert(`Tous vos points d'attaque sont distribués`);
 };
 
-alert(`Vous allez maintenant pouvoir choisir le mode de combat de vos héros`);
-
-
-
-// définition du mode
-
-herosArray.forEach(element => {
-    do {
-        element.mode = prompt(`Sur quel mode voulez-vous mettre votre ${element.poste}, ${element.nom}: normal, defense ou attaque ?`);
-
-        element.modeChoice();
-
-    } while (element.mode !== "normal" && element.mode !== "defense" && element.mode !== "attaque");
-});
-
-
 alert(`Récapitulatif de votre équipe: votre ${guerrier.poste},${guerrier.nom} possède ${Math.floor(guerrier.vie)} points de vie et ${Math.floor(guerrier.attaque)} point d'attaque / votre ${mage.poste},${mage.nom} possède ${Math.floor(mage.vie)} points de vie et ${Math.floor(mage.attaque)} point d'attaque. Ce personnage possède ${Math.floor(mage.mana)} points de mana / votre ${archer.poste},${archer.nom} possède ${Math.floor(archer.vie)} points de vie et ${Math.floor(archer.attaque)} point d'attaque. Ce personnage possède ${Math.floor(archer.fleches)} flèches dans son carquois`);
-alert("Vous allez pouvoir débuter la partie !");
 
 
 
@@ -172,14 +153,32 @@ alert("Vous allez pouvoir débuter la partie !");
 
 let i = 0;
 
+alert("Vous allez pouvoir débuter la partie !");
+
 do {
     i++;
 
     alert(`C'est parti pour le tour ${i}`);
+    alert(`Vous allez pouvoir définir le mode de vos héros`);
 
     herosArray.forEach (element =>{
 
         if (element.vie > 0) {
+
+            // définition du mode
+
+            alert(`Choisissez le mode de votre ${element.poste}`);
+            
+            do {
+                element.mode = prompt(`Sur quel mode voulez-vous mettre votre ${element.poste}, ${element.nom}: normal, defense ou attaque ?`);
+
+                element.modeChoice();
+
+            } while (element.mode !== "normal" && element.mode !== "defense" && element.mode !== "attaque");
+
+
+            //attaque
+
             elBoss.vie -= element.attaque;
 
             if (elBoss.vie > 0){
@@ -190,6 +189,9 @@ do {
                alert(`Votre ${element.poste} a fait mouche! Il ne reste plus de points de vie au boss.`);
 
             };
+
+
+            element.modeReinit();
         };
     });
 
@@ -255,9 +257,12 @@ do {
 
 
 // issue de la partie 
+document.getElementById("texte");
 
 if(elBoss.vie <= 0){
     alert(`Vous avez vaincu le boss, vous avez gagné la partie !`);
+    texte.innerText = (`You win!`);
 } else if (herosArray.length == 0) {
     alert(`Le boss a vaincu tous vos héros, vous avez perdu la partie`);
+    texte.innerText = (`You Lose!`);
 }

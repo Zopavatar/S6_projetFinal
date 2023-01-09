@@ -31,6 +31,27 @@ class Hero extends Perso {
                 alert(`Ceci ne fonctionne pas, veuillez introduire un mode`);
         };  
     }
+
+
+    modeReinit(){
+        switch (true){
+            case this.mode == "attaque":
+                this.attaque = this.attaque/1.4;
+                this.vie = this.vie/0.75;
+
+                this.mode = "normal";
+                break;
+
+            case this.mode == "defense":
+                this.attaque /= 0.5;
+                this.vie /= 2.5;
+
+                this.mode = "normal";
+                break;
+        }
+
+    }
+        
 }
 
 export class Guerrier extends Hero {
